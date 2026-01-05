@@ -1,0 +1,2962 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Академия - Бесплатные онлайн курсы программирования</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --dark-color: #2a2a3c;
+            --light-color: #f8f9fa;
+            --gray-color: #e9ecef;
+            --success-color: #4ade80;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            color: var(--dark-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 2rem;
+        }
+
+        nav a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.8s;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 1.1s;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Free badge */
+        .free-badge {
+            background-color: var(--success-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        /* Search section */
+        .search-section {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .search-box {
+            display: flex;
+            margin-top: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            font-size: 1.1rem;
+            outline: none;
+            background-color: var(--light-color);
+        }
+
+        .search-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 35px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .search-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .tag {
+            background-color: var(--gray-color);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Courses section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .courses {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+
+        .courses-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: white;
+            border: 2px solid var(--gray-color);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .course-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-header {
+            padding: 1.5rem 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .course-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-level {
+            font-size: 0.9rem;
+            color: var(--warning-color);
+            font-weight: 600;
+        }
+
+        .course-body {
+            padding: 1.5rem;
+        }
+
+        .course-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .course-body p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .keyword {
+            background-color: var(--light-color);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .course-footer {
+            padding: 0 1.5rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success-color);
+        }
+
+        .course-btn {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .course-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Application form */
+        .application-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .application-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .application-form {
+            background-color: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            padding: 2.5rem;
+            position: relative;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .application-modal.active .application-form {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .form-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .selected-course-info {
+            background-color: var(--light-color);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .selected-course-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Results section */
+        .results-section {
+            padding: 80px 0;
+            background-color: white;
+            display: none;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .results-count {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .matched-keywords {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 3rem;
+        }
+
+        .matched-keyword {
+            background-color: var(--success-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        /* Course Content Section */
+        .course-content-section {
+            padding: 100px 0;
+            background-color: white;
+            display: none;
+        }
+
+        .course-content-section.active {
+            display: block;
+        }
+
+        .course-content-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        .course-content-header h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .course-content-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+        }
+
+        .course-modules {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 2rem;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .module-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .module-list {
+            list-style: none;
+        }
+
+        .module-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            border-left: 4px solid transparent;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .module-item.active {
+            border-left-color: var(--primary-color);
+            background-color: #eef2ff;
+        }
+
+        .module-item:hover {
+            background-color: #eef2ff;
+        }
+
+        .module-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+
+        .module-item.completed .module-number {
+            background-color: var(--success-color);
+        }
+
+        .course-lesson {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .lesson-title {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .lesson-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .lesson-content h3 {
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-content h4 {
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-content ul, .lesson-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background-color: #2a2a3c;
+            color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block .language {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            color: #aaa;
+            font-size: 0.8rem;
+        }
+
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid var(--warning-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .note strong {
+            color: var(--warning-color);
+        }
+
+        .tip {
+            background-color: #d1ecf1;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .tip strong {
+            color: var(--accent-color);
+        }
+
+        .exercise {
+            background-color: #e7f7ed;
+            border-left: 4px solid var(--success-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .exercise h4 {
+            color: var(--success-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Code Editor */
+        .code-editor {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .editor-header {
+            background-color: #2d2d30;
+            padding: 10px 15px;
+            color: #ccc;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editor-content {
+            padding: 1rem;
+        }
+
+        .editor-textarea {
+            width: 100%;
+            min-height: 200px;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            border: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            line-height: 1.5;
+            resize: vertical;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .editor-textarea:focus {
+            outline: 1px solid var(--primary-color);
+        }
+
+        .editor-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #2d2d30;
+        }
+
+        .run-btn {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .run-btn:hover {
+            background-color: #22c55e;
+        }
+
+        .reset-btn {
+            background-color: transparent;
+            color: #ccc;
+            border: 1px solid #555;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .reset-btn:hover {
+            background-color: #333;
+        }
+
+        .output {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            min-height: 50px;
+            white-space: pre-wrap;
+        }
+
+        .output.success {
+            border-left: 4px solid var(--success-color);
+            background-color: rgba(74, 222, 128, 0.1);
+        }
+
+        .output.error {
+            border-left: 4px solid var(--danger-color);
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: var(--gray-color);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Навигация по урокам */
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-color);
+        }
+
+        .prev-lesson-btn, .next-lesson-btn {
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .prev-lesson-btn:hover, .next-lesson-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .prev-lesson-btn:disabled, .next-lesson-btn:disabled {
+            background-color: var(--gray-color);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .next-lesson-btn.locked {
+            background-color: var(--warning-color);
+        }
+
+        .next-lesson-btn.locked:hover {
+            background-color: #e69c0a;
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        .next-lesson-btn.locked::after {
+            content: " (сначала выполните задание)";
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        .completion-message {
+            background-color: #e7f7ed;
+            border-left: 4px solid var(--success-color);
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .back-to-courses {
+            display: block;
+            margin: 2rem auto;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-to-courses:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .courses-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .course-content-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            nav li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+
+            .hero {
+                padding: 150px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .lesson-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .prev-lesson-btn, .next-lesson-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .next-lesson-btn.locked::after {
+                content: "";
+                font-size: 0;
+            }
+            
+            .next-lesson-btn.locked::before {
+                content: "⚠️ Сначала выполните задание";
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .application-form {
+                padding: 1.5rem;
+            }
+            
+            .course-content-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div style="width: 40px; height: 40px; background: linear-gradient(45deg, #4361ee, #3a0ca3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">IT</div>
+                <span>Академия</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#courses">Курсы</a></li>
+                    <li><a href="#search">Поиск курса</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Бесплатные IT курсы для всех</h1>
+            <p>Изучайте программирование, анализ данных и веб-разработку совершенно бесплатно. От новичка до профессионала.</p>
+            <div class="hero-btns">
+                <a href="#courses" class="btn pulse">Начать обучение</a>
+                <a href="#search" class="btn btn-secondary">Подобрать курс</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section" id="search">
+        <div class="container search-container">
+            <h2>Подбор курса по вашим навыкам</h2>
+            <p>Опишите, что вы умеете или хотите изучить, и мы подберем подходящие курсы</p>
+            <div class="search-box">
+                <input type="text" class="search-input" id="skillInput" placeholder="Например: хочу изучить Python для анализа данных...">
+                <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> Найти</button>
+            </div>
+            <div class="search-tags">
+                <div class="tag" data-tag="python">Python</div>
+                <div class="tag" data-tag="javascript">JavaScript</div>
+                <div class="tag" data-tag="java">Java</div>
+                <div class="tag" data-tag="веб">Веб-разработка</div>
+                <div class="tag" data-tag="данные">Анализ данных</div>
+                <div class="tag" data-tag="мобильная">Мобильная разработка</div>
+                <div class="tag" data-tag="дизайн">UI/UX дизайн</div>
+                <div class="tag" data-tag="тестирование">Тестирование</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="resultsSection">
+        <div class="container">
+            <div class="section-title">
+                <h2>Подходящие курсы</h2>
+            </div>
+            <div class="results-count" id="resultsCount"></div>
+            <div class="matched-keywords" id="matchedKeywords"></div>
+            <div class="courses-grid" id="resultsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Все курсы <span class="free-badge">БЕСПЛАТНО</span></h2>
+                <p>Выберите направление для старта в IT-профессии. Все курсы полностью бесплатны!</p>
+            </div>
+            <div class="courses-filter">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="web">Веб-разработка</button>
+                <button class="filter-btn" data-filter="data">Анализ данных</button>
+                <button class="filter-btn" data-filter="mobile">Мобильная разработка</button>
+                <button class="filter-btn" data-filter="design">Дизайн</button>
+                <button class="filter-btn" data-filter="qa">Тестирование</button>
+            </div>
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Курсы будут добавлены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Content Section -->
+    <section class="course-content-section" id="courseContentSection">
+        <div class="container">
+            <div class="course-content-header">
+                <h2 id="courseContentTitle">Название курса</h2>
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="courseDuration">6 месяцев</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-signal"></i>
+                        <span id="courseLevel">Начинающий</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-book"></i>
+                        <span id="courseModules">12 модулей</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-tag"></i>
+                        <span style="color: var(--success-color); font-weight: 600;">БЕСПЛАТНО</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>Прогресс</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="course-content-container">
+                <div class="course-lesson">
+                    <h3 class="lesson-title" id="lessonTitle">Урок 1: Введение в курс</h3>
+                    <div class="lesson-content" id="lessonContent">
+                        <!-- Содержание урока будет загружено через JS -->
+                    </div>
+                    <div id="codeExerciseContainer"></div>
+                    
+                    <div class="lesson-navigation">
+                        <button class="prev-lesson-btn" id="prevLessonBtn">
+                            <i class="fas fa-arrow-left"></i> Предыдущий урок
+                        </button>
+                        <button class="next-lesson-btn" id="nextLessonBtn">
+                            Следующий урок <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="course-modules">
+                    <h3 class="module-title">Модули курса</h3>
+                    <ul class="module-list" id="moduleList">
+                        <!-- Список модулей будет загружен через JS -->
+                    </ul>
+                </div>
+            </div>
+            
+            <button class="back-to-courses" id="backToCourses">
+                <i class="fas fa-arrow-left"></i> Вернуться ко всем курсам
+            </button>
+        </div>
+    </section>
+
+    <!-- Application Modal -->
+    <div class="application-modal" id="applicationModal">
+        <div class="application-form">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h2 class="form-title">Начать обучение бесплатно</h2>
+            <div class="selected-course-info" id="selectedCourseInfo">
+                <h4 id="selectedCourseTitle"></h4>
+                <p id="selectedCourseDescription"></p>
+                <p style="color: var(--success-color); font-weight: 600; margin-top: 5px;">
+                    <i class="fas fa-gift"></i> Этот курс полностью бесплатный!
+                </p>
+            </div>
+            <form id="applicationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="applicantName">Имя *</label>
+                        <input type="text" id="applicantName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="applicantSurname">Фамилия *</label>
+                        <input type="text" id="applicantSurname" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="applicantEmail">Email *</label>
+                    <input type="email" id="applicantEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="applicantExperience">Опыт в программировании</label>
+                    <select id="applicantExperience">
+                        <option value="none">Нет опыта</option>
+                        <option value="beginner">Начинающий (менее года)</option>
+                        <option value="intermediate">Средний (1-3 года)</option>
+                        <option value="advanced">Продвинутый (более 3 лет)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="applicantMessage">Дополнительная информация (необязательно)</label>
+                    <textarea id="applicantMessage" rows="3" placeholder="Расскажите о своих целях, ожиданиях от курса..."></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                    <i class="fas fa-rocket"></i> Начать обучение сейчас
+                </button>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                    После отправки заявки вы сразу получите доступ к материалам курса
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>IT Академия</h3>
+                    <p>Бесплатное обучение программированию с интерактивными заданиями и проверкой кода. Наша миссия - сделать IT-образование доступным для всех.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Направления</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-filter="web">Веб-разработка</a></li>
+                        <li><a href="#" data-filter="data">Анализ данных</a></li>
+                        <li><a href="#" data-filter="mobile">Мобильная разработка</a></li>
+                        <li><a href="#" data-filter="design">Дизайн</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@it-academy.ru</li>
+                        <li><i class="fas fa-globe"></i> it-academy.ru</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem; color: #bbb; font-size: 0.9rem;">
+                        Все курсы предоставляются бесплатно в образовательных целях.
+                    </p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 IT Академия. Все курсы бесплатны для всех желающих.</p>
+                <p>Создано с ❤️ для тех, кто хочет научиться программировать</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // База данных курсов с полным содержимым и реальными знаниями
+        const courses = [
+            {
+                id: 1,
+                title: "Fullstack-разработчик на JavaScript",
+                description: "Научитесь создавать современные веб-приложения с использованием React, Node.js и MongoDB.",
+                category: "web",
+                level: "Средний",
+                duration: "8 месяцев",
+                price: "БЕСПЛАТНО",
+                keywords: ["javascript", "react", "node.js", "mongodb", "веб", "fullstack", "frontend", "backend"],
+                matched: false,
+                modules: 14,
+                content: {
+                    title: "Fullstack-разработчик на JavaScript",
+                    lessons: [
+                        {
+                            title: "Урок 1: Основы JavaScript - переменные и типы данных",
+                            content: `
+                                <h3>Что такое JavaScript и зачем его изучать?</h3>
+                                <p>JavaScript — это язык программирования, который изначально создавался для добавления интерактивности на веб-страницы. Сегодня он используется для:</p>
+                                <ul>
+                                    <li>Создания интерактивных веб-сайтов</li>
+                                    <li>Разработки серверных приложений (Node.js)</li>
+                                    <li>Мобильных приложений (React Native)</li>
+                                    <li>Десктопных приложений (Electron)</li>
+                                    <li>Игр и даже программирования микроконтроллеров</li>
+                                </ul>
+                                
+                                <h3>Переменные в JavaScript</h3>
+                                <p>В JavaScript есть три способа объявления переменных:</p>
+                                
+                                <div class="code-block">
+                                    <div class="language">JavaScript</div>
+<pre>
+// 1. var - устаревший способ (не рекомендуется)
+var oldWay = "Устаревший способ";
+
+// 2. let - для переменных, которые будут меняться
+let changeable = "Я могу измениться";
+changeable = "Новое значение";
+
+// 3. const - для констант (неизменяемых значений)
+const PI = 3.14159;
+// PI = 3.14; // Ошибка! const нельзя переопределять
+
+// Правильные имена переменных
+let userName = "Алексей"; // camelCase - стандарт в JS
+let user_age = 25;        // snake_case - не рекомендуется в JS
+let UserName = "Мария";   // PascalCase - для классов
+</pre>
+                                </div>
+                                
+                                <div class="note">
+                                    <strong>Важно:</strong> Всегда используйте <code>const</code> по умолчанию, и только если переменная будет меняться — используйте <code>let</code>. Избегайте <code>var</code> в современном коде.
+                                </div>
+                                
+                                <h3>Типы данных в JavaScript</h3>
+                                <p>JavaScript имеет динамическую типизацию — тип переменной определяется автоматически:</p>
+                                
+                                <div class="code-block">
+                                    <div class="language">JavaScript</div>
+<pre>
+// Примитивные типы данных
+let stringType = "Текст";          // Строка (string)
+let numberType = 42;               // Число (number)
+let booleanType = true;            // Булево значение (boolean)
+let nullType = null;               // Null (специальное значение)
+let undefinedType = undefined;     // Undefined (не определено)
+let symbolType = Symbol('id');     // Символ (symbol) - ES6
+
+// Объектные типы
+let objectType = {                 // Объект (object)
+    name: "Иван",
+    age: 30
+};
+
+let arrayType = [1, 2, 3];         // Массив (array)
+let functionType = function() {    // Функция (function)
+    return "Привет!";
+};
+
+// Проверка типов
+console.log(typeof stringType);    // "string"
+console.log(typeof numberType);    // "number"
+console.log(typeof booleanType);   // "boolean"
+console.log(typeof nullType);      // "object" (историческая особенность!)
+console.log(typeof undefinedType); // "undefined"
+console.log(typeof objectType);    // "object"
+console.log(typeof arrayType);     // "object"
+console.log(typeof functionType);  // "function"
+</pre>
+                                </div>
+                                
+                                <div class="tip">
+                                    <strong>Совет:</strong> Для точной проверки типа массива используйте <code>Array.isArray()</code>, а не <code>typeof</code>.
+                                </div>
+                                
+                                <h3>Практическое задание</h3>
+                                <p>Пора применить полученные знания на практике!</p>
+                            `,
+                            exercise: {
+                                description: "Создайте функцию, которая принимает два числа и возвращает их сумму. Проверьте работу функции с разными типами данных.",
+                                initialCode: `function sum(a, b) {
+    // Ваш код здесь
+    // Функция должна возвращать сумму a и b
+}
+
+// Примеры использования:
+console.log(sum(2, 3));     // Должно вывести: 5
+console.log(sum(-1, 1));    // Должно вывести: 0
+console.log(sum(0, 0));     // Должно вывести: 0
+console.log(sum("5", "3")); // Должно вывести: 8 (число, не строка!)`,
+                                tests: [
+                                    { input: "sum(2, 3)", expected: 5 },
+                                    { input: "sum(-1, 1)", expected: 0 },
+                                    { input: "sum(0, 0)", expected: 0 },
+                                    { input: "sum(10, -5)", expected: 5 },
+                                    { input: "sum('5', '3')", expected: 8 }
+                                ]
+                            }
+                        },
+                        {
+                            title: "Урок 2: Функции и область видимости",
+                            content: `
+                                <h3>Функции в JavaScript</h3>
+                                <p>Функции — это основные строительные блоки JavaScript. Они позволяют инкапсулировать логику и повторно использовать код.</p>
+                                
+                                <h4>Способы объявления функций:</h4>
+                                
+                                <div class="code-block">
+                                    <div class="language">JavaScript</div>
+<pre>
+// 1. Function Declaration (можно вызывать до объявления)
+function sayHello(name) {
+    return "Привет, " + name + "!";
+}
+
+// 2. Function Expression (нельзя вызывать до объявления)
+const sayGoodbye = function(name) {
+    return "Пока, " + name + "!";
+};
+
+// 3. Arrow Function (ES6+)
+const multiply = (a, b) => {
+    return a * b;
+};
+
+// 4. Arrow Function с неявным возвратом
+const square = x => x * x;
+
+// 5. IIFE - Immediately Invoked Function Expression
+(function() {
+    console.log("Я выполнюсь сразу!");
+})();
+</pre>
+                                </div>
+                                
+                                <h3>Практическое задание</h3>
+                                <p>Создайте несколько функций разными способами и протестируйте их работу.</p>
+                            `,
+                            exercise: {
+                                description: "Создайте функцию createCalculator, которая возвращает объект с методами для выполнения арифметических операций. Используйте замыкание для хранения текущего результата.",
+                                initialCode: `function createCalculator(initialValue = 0) {
+    // Ваш код здесь
+    // Функция должна возвращать объект с методами:
+    // add(num) - прибавляет num к текущему значению
+    // subtract(num) - вычитает num из текущего значения
+    // multiply(num) - умножает текущее значение на num
+    // divide(num) - делит текущее значение на num
+    // getResult() - возвращает текущее значение
+    // reset() - сбрасывает значение к initialValue
+}
+
+// Пример использования:
+const calc = createCalculator(10);
+calc.add(5);
+console.log(calc.getResult()); // 15
+calc.subtract(3);
+console.log(calc.getResult()); // 12
+calc.multiply(2);
+console.log(calc.getResult()); // 24
+calc.divide(4);
+console.log(calc.getResult()); // 6
+calc.reset();
+console.log(calc.getResult()); // 10`,
+                                tests: [
+                                    { input: `const calc = createCalculator(5); calc.add(3); calc.getResult()`, expected: 8 },
+                                    { input: `const calc = createCalculator(10); calc.subtract(4); calc.getResult()`, expected: 6 },
+                                    { input: `const calc = createCalculator(2); calc.multiply(5); calc.getResult()`, expected: 10 },
+                                    { input: `const calc = createCalculator(20); calc.divide(4); calc.getResult()`, expected: 5 },
+                                    { input: `const calc = createCalculator(100); calc.add(50); calc.subtract(30); calc.multiply(2); calc.divide(4); calc.getResult()`, expected: 60 }
+                                ]
+                            }
+                        },
+                        {
+                            title: "Урок 3: Работа с DOM",
+                            content: `
+                                <h3>Что такое DOM?</h3>
+                                <p>DOM (Document Object Model) — это программный интерфейс для HTML и XML документов. Он представляет структуру документа в виде дерева объектов, которые можно изменять с помощью JavaScript.</p>
+                                
+                                <h3>Основные методы работы с DOM:</h3>
+                                
+                                <div class="code-block">
+                                    <div class="language">JavaScript</div>
+<pre>
+// Поиск элементов
+const elementById = document.getElementById('myId');
+const elementsByClass = document.getElementsByClassName('myClass');
+const elementsByTag = document.getElementsByTagName('div');
+const elementBySelector = document.querySelector('#myId .myClass');
+const elementsBySelectorAll = document.querySelectorAll('.myClass');
+
+// Создание элементов
+const newDiv = document.createElement('div');
+const newText = document.createTextNode('Привет, мир!');
+
+// Добавление элементов
+newDiv.appendChild(newText);
+document.body.appendChild(newDiv);
+
+// Изменение элементов
+newDiv.id = 'myNewDiv';
+newDiv.className = 'container';
+newDiv.textContent = 'Новый текст';
+newDiv.innerHTML = '<strong>Жирный текст</strong>';
+
+// Удаление элементов
+newDiv.remove();
+</pre>
+                                </div>
+                                
+                                <h3>Практическое задание</h3>
+                                <p>Создайте функцию, которая динамически создает список элементов на странице.</p>
+                            `,
+                            exercise: {
+                                description: "Создайте функцию createList, которая принимает массив строк и создает на странице маркированный список с этими элементами.",
+                                initialCode: `function createList(items) {
+    // Ваш код здесь
+    // Функция должна:
+    // 1. Создать ul элемент
+    // 2. Для каждого элемента массива создать li элемент
+    // 3. Добавить текст в li элемент
+    // 4. Добавить li в ul
+    // 5. Добавить ul в body документа
+    // 6. Вернуть созданный ul элемент
+}
+
+// Пример использования:
+createList(['Яблоко', 'Банан', 'Апельсин']);
+// Должен создать список:
+// • Яблоко
+// • Банан
+// • Апельсин`,
+                                tests: [
+                                    { input: `const ul = createList(['A', 'B', 'C']); ul.tagName`, expected: "UL" },
+                                    { input: `const ul = createList(['A', 'B', 'C']); ul.children.length`, expected: 3 },
+                                    { input: `const ul = createList([]); ul.children.length`, expected: 0 },
+                                    { input: `const ul = createList(['Тест']); ul.children[0].textContent`, expected: "Тест" }
+                                ]
+                            }
+                        },
+                        {
+                            title: "Урок 4: События и обработка событий",
+                            content: `
+                                <h3>Что такое события в JavaScript?</h3>
+                                <p>События — это действия, которые происходят на веб-странице (клики, наведение, нажатие клавиш и т.д.). JavaScript позволяет реагировать на эти события с помощью обработчиков.</p>
+                                
+                                <h3>Основные типы событий:</h3>
+                                
+                                <div class="code-block">
+                                    <div class="language">JavaScript</div>
+<pre>
+// События мыши
+click        // Клик мышью
+dblclick     // Двойной клик
+mouseover    // Наведение курсора
+mouseout     // Уход курсора
+mousedown    // Нажатие кнопки мыши
+mouseup      // Отпускание кнопки мыши
+
+// События клавиатуры
+keydown      // Нажатие клавиши
+keyup        // Отпускание клавиши
+keypress     // Нажатие и удержание клавиши
+
+// События формы
+submit       // Отправка формы
+change       // Изменение значения
+focus        // Получение фокуса
+blur         // Потеря фокуса
+
+// События окна
+load         // Загрузка страницы
+resize       // Изменение размера окна
+scroll       // Прокрутка страницы
+</pre>
+                                </div>
+                                
+                                <h3>Практическое задание</h3>
+                                <p>Создайте интерактивную кнопку, которая меняет цвет при наведении и считает клики.</p>
+                            `,
+                            exercise: {
+                                description: "Создайте кнопку, которая меняет цвет при наведении и показывает количество кликов.",
+                                initialCode: `// HTML для тестирования:
+// <button id="interactiveBtn">Кликни меня</button>
+// <div id="clickCount">Кликов: 0</div>
+
+function setupInteractiveButton() {
+    // Ваш код здесь
+    // 1. Найти кнопку и элемент для отображения счетчика
+    // 2. Добавить обработчик наведения (mouseover) - менять цвет кнопки
+    // 3. Добавить обработчик ухода (mouseout) - возвращать исходный цвет
+    // 4. Добавить обработчик клика (click) - увеличивать счетчик и обновлять отображение
+    // 5. Вернуть объект с методами для тестирования
+}
+
+// Пример использования:
+setupInteractiveButton();`,
+                                tests: [
+                                    { input: `typeof setupInteractiveButton`, expected: "function" }
+                                ]
+                            }
+                        },
+                        {
+                            title: "Урок 5: Массивы и методы массивов",
+                            content: `
+                                <h3>Массивы в JavaScript</h3>
+                                <p>Массивы — это упорядоченные коллекции элементов. В JavaScript массивы могут содержать элементы разных типов и являются динамическими.</p>
+                                
+                                <h3>Основные методы массивов:</h3>
+                                
+                                <div class="code-block">
+                                    <div class="language">JavaScript</div>
+<pre>
+const numbers = [1, 2, 3, 4, 5];
+
+// Методы, которые не изменяют исходный массив
+const doubled = numbers.map(x => x * 2);          // [2, 4, 6, 8, 10]
+const even = numbers.filter(x => x % 2 === 0);    // [2, 4]
+const sum = numbers.reduce((acc, x) => acc + x, 0); // 15
+const hasThree = numbers.includes(3);             // true
+
+// Методы, которые изменяют исходный массив
+numbers.push(6);          // Добавить в конец
+numbers.pop();            // Удалить с конца
+numbers.unshift(0);       // Добавить в начало
+numbers.shift();          // Удалить с начала
+numbers.splice(2, 1);     // Удалить 1 элемент с позиции 2
+
+// Поиск в массиве
+const index = numbers.indexOf(3);     // 2
+const found = numbers.find(x => x > 3); // 4
+
+// Сортировка
+const sorted = [...numbers].sort((a, b) => a - b);
+const reversed = [...numbers].reverse();
+</pre>
+                                </div>
+                                
+                                <h3>Практическое задание</h3>
+                                <p>Напишите функции для работы с массивами чисел.</p>
+                            `,
+                            exercise: {
+                                description: "Создайте несколько функций для обработки массивов чисел.",
+                                initialCode: `// 1. Функция для нахождения максимального значения в массиве
+function findMax(arr) {
+    // Ваш код здесь
+}
+
+// 2. Функция для нахождения среднего значения
+function findAverage(arr) {
+    // Ваш код здесь
+}
+
+// 3. Функция для удаления дубликатов
+function removeDuplicates(arr) {
+    // Ваш код здесь
+}
+
+// 4. Функция для объединения двух массивов с сортировкой
+function mergeAndSort(arr1, arr2) {
+    // Ваш код здесь
+}
+
+// Примеры использования:
+console.log(findMax([1, 5, 3, 9, 2])); // 9
+console.log(findAverage([1, 2, 3, 4, 5])); // 3
+console.log(removeDuplicates([1, 2, 2, 3, 3, 3, 4])); // [1, 2, 3, 4]
+console.log(mergeAndSort([3, 1, 4], [2, 5, 0])); // [0, 1, 2, 3, 4, 5]`,
+                                tests: [
+                                    { input: `findMax([1, 5, 3, 9, 2])`, expected: 9 },
+                                    { input: `findAverage([1, 2, 3, 4, 5])`, expected: 3 },
+                                    { input: `JSON.stringify(removeDuplicates([1, 2, 2, 3, 3, 3, 4]))`, expected: JSON.stringify([1, 2, 3, 4]) },
+                                    { input: `JSON.stringify(mergeAndSort([3, 1, 4], [2, 5, 0]))`, expected: JSON.stringify([0, 1, 2, 3, 4, 5]) }
+                                ]
+                            }
+                        },
+                        {
+                            title: "Урок 6: Объекты и JSON",
+                            content: `
+                                <h3>Объекты в JavaScript</h3>
+                                <p>Объекты — это коллекции пар ключ-значение. Они используются для хранения структурированных данных.</p>
+                                
+                                <div class="code-block">
+                                    <div class="language">JavaScript</div>
+<pre>
+// Создание объекта
+const person = {
+    name: "Анна",
+    age: 28,
+    profession: "Разработчик",
+    skills: ["JavaScript", "React", "Node.js"],
+    
+    // Метод объекта
+    introduce() {
+        return \`Меня зовут \${this.name}, мне \${this.age} лет\`;
+    }
+};
+
+// Доступ к свойствам
+console.log(person.name);          // "Анна"
+console.log(person["age"]);        // 28
+console.log(person.introduce());   // "Меня зовут Анна, мне 28 лет"
+
+// Изменение объекта
+person.age = 29;
+person.location = "Москва";
+delete person.profession;
+
+// Итерация по объекту
+for (let key in person) {
+    console.log(key + ": " + person[key]);
+}
+
+// Методы Object
+const keys = Object.keys(person);      // ["name", "age", "skills", "introduce", "location"]
+const values = Object.values(person);  // ["Анна", 29, ["JavaScript", "React", "Node.js"], function..., "Москва"]
+const entries = Object.entries(person); // Массив пар [ключ, значение]
+</pre>
+                                </div>
+                                
+                                <h3>Практическое задание</h3>
+                                <p>Создайте функции для работы с объектами и JSON.</p>
+                            `,
+                            exercise: {
+                                description: "Реализуйте функции для работы с объектами и преобразования в JSON.",
+                                initialCode: `// 1. Функция для глубокого копирования объекта
+function deepCopy(obj) {
+    // Ваш код здесь
+}
+
+// 2. Функция для сравнения двух объектов
+function areObjectsEqual(obj1, obj2) {
+    // Ваш код здесь
+}
+
+// 3. Функция для преобразования объекта в строку запроса URL
+function objectToQueryString(obj) {
+    // Ваш код здесь
+}
+
+// 4. Функция для слияния двух объектов
+function mergeObjects(obj1, obj2) {
+    // Ваш код здесь
+}
+
+// Примеры использования:
+const original = { a: 1, b: { c: 2 } };
+const copied = deepCopy(original);
+console.log(copied.b.c); // 2
+
+console.log(areObjectsEqual({ a: 1 }, { a: 1 })); // true
+console.log(areObjectsEqual({ a: 1 }, { a: 2 })); // false
+
+console.log(objectToQueryString({ name: "John", age: 30 })); // "name=John&age=30"
+
+console.log(mergeObjects({ a: 1 }, { b: 2 })); // { a: 1, b: 2 }`,
+                                tests: [
+                                    { input: `const orig = { a: 1, b: { c: 2 } }; const copy = deepCopy(orig); copy.b.c = 3; orig.b.c`, expected: 2 },
+                                    { input: `areObjectsEqual({ a: 1, b: 2 }, { a: 1, b: 2 })`, expected: true },
+                                    { input: `objectToQueryString({ name: "John", age: 30 })`, expected: "name=John&age=30" },
+                                    { input: `JSON.stringify(mergeObjects({ a: 1 }, { b: 2, a: 3 }))`, expected: JSON.stringify({ a: 3, b: 2 }) }
+                                ]
+                            }
+                        }
+                    ],
+                    modules: [
+                        "Основы JavaScript: синтаксис, переменные, типы данных",
+                        "Функции и область видимости",
+                        "Работа с DOM",
+                        "События и обработка событий",
+                        "Асинхронный JavaScript: Promise, async/await",
+                        "React: основы, компоненты, состояние",
+                        "Node.js: создание серверной части",
+                        "MongoDB и взаимодействие с базой данных",
+                        "Express.js: фреймворк для Node.js",
+                        "REST API: проектирование и реализация",
+                        "Аутентификация и авторизация",
+                        "Деплой приложения на сервер",
+                        "Оптимизация производительности",
+                        "Финализация проекта и подготовка портфолио"
+                    ]
+                }
+            },
+            {
+                id: 2,
+                title: "Python для анализа данных",
+                description: "Освойте Python, библиотеки для анализа данных (Pandas, NumPy) и визуализации (Matplotlib, Seaborn).",
+                category: "data",
+                level: "Начинающий",
+                duration: "6 месяцев",
+                price: "БЕСПЛАТНО",
+                keywords: ["python", "анализ данных", "pandas", "numpy", "машинное обучение", "data science"],
+                matched: false,
+                modules: 12,
+                content: {
+                    title: "Python для анализа данных",
+                    lessons: [
+                        {
+                            title: "Урок 1: Основы Python и установка окружения",
+                            content: `
+                                <h3>Почему Python для анализа данных?</h3>
+                                <p>Python стал стандартом в Data Science благодаря:</p>
+                                <ul>
+                                    <li>Простоте синтаксиса и быстроте обучения</li>
+                                    <li>Богатой экосистеме библиотек (NumPy, Pandas, SciPy, Scikit-learn)</li>
+                                    <li>Большому сообществу и обилию ресурсов</li>
+                                    <li>Кроссплатформенности</li>
+                                    <li>Интеграции с другими языками и инструментами</li>
+                                </ul>
+                                
+                                <h3>Основы Python для начинающих</h3>
+                                
+                                <div class="code-block">
+                                    <div class="language">Python</div>
+<pre>
+# Переменные и типы данных
+name = "Алексей"          # Строка (str)
+age = 30                  # Целое число (int)
+height = 1.85             # Число с плавающей точкой (float)
+is_student = True         # Булево значение (bool)
+skills = ["Python", "SQL", "Stats"]  # Список (list)
+person = {"name": "Мария", "age": 25}  # Словарь (dict)
+
+# Базовые операции
+a = 10
+b = 3
+print(a + b)   # 13
+print(a - b)   # 7
+print(a * b)   # 30
+print(a / b)   # 3.333... (деление с плавающей точкой)
+print(a // b)  # 3 (целочисленное деление)
+print(a % b)   # 1 (остаток от деления)
+print(a ** b)  # 1000 (возведение в степень)
+</pre>
+                                </div>
+                                
+                                <h3>Практическое задание</h3>
+                                <p>Напишите программу, которая анализирует список оценок студентов и вычисляет статистику.</p>
+                            `,
+                            exercise: {
+                                description: "Создайте функцию analyze_grades, которая принимает список оценок и возвращает словарь со статистикой.",
+                                initialCode: `def analyze_grades(grades):
+    """
+    Анализирует список оценок и возвращает статистику.
+    
+    Args:
+        grades (list): Список числовых оценок
+        
+    Returns:
+        dict: Словарь со статистикой:
+            - count: количество оценок
+            - average: средняя оценка
+            - max: максимальная оценка
+            - min: минимальная оценка
+            - passed: количество оценок >= 60
+            - failed: количество оценок < 60
+    """
+    # Ваш код здесь
+    pass
+
+# Пример использования:
+grades = [85, 92, 78, 90, 65, 88, 72, 95, 59, 82]
+result = analyze_grades(grades)
+print(result)`,
+                                tests: [
+                                    { input: `analyze_grades([100, 90, 80])['average']`, expected: 90 },
+                                    { input: `analyze_grades([50, 60, 70])['passed']`, expected: 2 },
+                                    { input: `analyze_grades([10, 20, 30])['max']`, expected: 30 },
+                                    { input: `analyze_grades([85, 92, 78, 90])['count']`, expected: 4 },
+                                    { input: `analyze_grades([100, 0, 50])['min']`, expected: 0 }
+                                ]
+                            }
+                        }
+                    ],
+                    modules: [
+                        "Введение в Python и Jupyter Notebook",
+                        "Работа с данными в Pandas",
+                        "Визуализация с Matplotlib и Seaborn",
+                        "Статистический анализ данных",
+                        "Предобработка данных",
+                        "Работа с временными рядами",
+                        "Машинное обучение: линейная регрессия",
+                        "Классификация: логистическая регрессия и деревья решений",
+                        "Кластеризация данных",
+                        "Обработка естественного языка",
+                        "Работа с большими данными",
+                        "Создание дашбордов и отчетов"
+                    ]
+                }
+            },
+            {
+                id: 3,
+                title: "Мобильная разработка на Kotlin",
+                description: "Научитесь создавать мобильные приложения для Android с использованием Kotlin и Android SDK.",
+                category: "mobile",
+                level: "Начинающий",
+                duration: "7 месяцев",
+                price: "БЕСПЛАТНО",
+                keywords: ["kotlin", "android", "мобильная", "приложение", "java", "mobile"],
+                matched: false,
+                modules: 10,
+                content: {
+                    title: "Мобильная разработка на Kotlin",
+                    lessons: [
+                        {
+                            title: "Урок 1: Введение в Kotlin и Android Studio",
+                            content: `
+                                <h3>Почему Kotlin для Android?</h3>
+                                <p>Kotlin — официальный язык для разработки под Android, рекомендованный Google. Преимущества:</p>
+                                <ul>
+                                    <li><strong>Безопасность от NPE</strong> — система типов помогает избежать NullPointerException</li>
+                                    <li><strong>Лаконичность</strong> — на 30-40% меньше кода чем на Java</li>
+                                    <li><strong>Совместимость</strong> — 100% совместим с Java</li>
+                                    <li><strong>Функциональное программирование</strong> — поддержка лямбда и высших функций</li>
+                                    <li><strong>Корутины</strong> — упрощенная работа с асинхронностью</li>
+                                </ul>
+                                
+                                <h3>Основы синтаксиса Kotlin</h3>
+                                
+                                <div class="code-block">
+                                    <div class="language">Kotlin</div>
+<pre>
+// Переменные
+val immutable = "Неизменяемая" // val = value (константа)
+var mutable = "Изменяемая"     // var = variable
+
+// Типы данных
+val name: String = "Алексей"   // Явное указание типа
+val age = 30                    // Вывод типа (Int)
+val height = 1.85               // Double
+val isDeveloper = true          // Boolean
+
+// Null безопасность
+var nullable: String? = null    // ? означает, что может быть null
+var nonNullable: String = "Текст" // Не может быть null
+
+// Безопасный вызов
+val length = nullable?.length   // Если null, вернет null
+val lengthOrZero = nullable?.length ?: 0  // Elvis оператор
+</pre>
+                                </div>
+                                
+                                <h3>Практическое задание</h3>
+                                <p>Создайте класс для управления списком задач (To-Do List) с использованием Kotlin.</p>
+                            `,
+                            exercise: {
+                                description: "Реализуйте класс TaskManager для управления задачами. Класс должен поддерживать добавление, удаление, обновление и фильтрацию задач.",
+                                initialCode: `data class Task(
+    val id: Int,
+    val title: String,
+    val description: String,
+    var isCompleted: Boolean = false
+)
+
+class TaskManager {
+    private val tasks = mutableListOf<Task>()
+    private var nextId = 1
+    
+    // Добавить новую задачу
+    fun addTask(title: String, description: String): Task {
+        // Ваш код здесь
+    }
+    
+    // Удалить задачу по ID
+    fun removeTask(id: Int): Boolean {
+        // Ваш код здесь
+    }
+    
+    // Получить задачу по ID
+    fun getTask(id: Int): Task? {
+        // Ваш код здесь
+    }
+    
+    // Отметить задачу как выполненную
+    fun completeTask(id: Int): Boolean {
+        // Ваш код здесь
+    }
+    
+    // Получить все задачи
+    fun getAllTasks(): List<Task> {
+        return tasks.toList()
+    }
+    
+    // Получить выполненные задачи
+    fun getCompletedTasks(): List<Task> {
+        // Ваш код здесь
+    }
+}`,
+                                tests: [
+                                    { input: `val tm = TaskManager(); tm.addTask("Test", "Desc"); tm.getAllTasks().size`, expected: 1 },
+                                    { input: `val tm = TaskManager(); val t = tm.addTask("A", "B"); tm.completeTask(t.id); tm.getCompletedTasks().size`, expected: 1 },
+                                    { input: `val tm = TaskManager(); tm.addTask("1", "a"); tm.addTask("2", "b"); tm.getPendingTasks().size`, expected: 2 },
+                                    { input: `val tm = TaskManager(); val t = tm.addTask("X", "Y"); tm.removeTask(t.id); tm.getAllTasks().size`, expected: 0 },
+                                    { input: `val tm = TaskManager(); val t = tm.addTask("Test", "Desc"); tm.getTask(t.id)?.title`, expected: "Test" }
+                                ]
+                            }
+                        }
+                    ],
+                    modules: [
+                        "Основы Kotlin: синтаксис и функции",
+                        "Android Studio и структура проекта",
+                        "Пользовательские интерфейсы: View и ViewGroup",
+                        "Activity и жизненный цикл приложения",
+                        "Работа с данными: SharedPreferences и Room",
+                        "Сетевое взаимодействие: Retrofit и OkHttp",
+                        "Архитектура приложения: MVVM и LiveData",
+                        "Работа с камерой и геолокацией",
+                        "Публикация приложения в Google Play",
+                        "Монетизация и аналитика"
+                    ]
+                }
+            }
+        ];
+
+        // DOM элементы
+        const coursesGrid = document.getElementById('coursesGrid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('skillInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const tags = document.querySelectorAll('.tag');
+        const resultsSection = document.getElementById('resultsSection');
+        const resultsGrid = document.getElementById('resultsGrid');
+        const resultsCount = document.getElementById('resultsCount');
+        const matchedKeywords = document.getElementById('matchedKeywords');
+        const applicationModal = document.getElementById('applicationModal');
+        const closeModal = document.getElementById('closeModal');
+        const selectedCourseInfo = document.getElementById('selectedCourseInfo');
+        const selectedCourseTitle = document.getElementById('selectedCourseTitle');
+        const selectedCourseDescription = document.getElementById('selectedCourseDescription');
+        const applicationForm = document.getElementById('applicationForm');
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        // Элементы для отображения курса
+        const courseContentSection = document.getElementById('courseContentSection');
+        const courseContentTitle = document.getElementById('courseContentTitle');
+        const courseDuration = document.getElementById('courseDuration');
+        const courseLevel = document.getElementById('courseLevel');
+        const courseModules = document.getElementById('courseModules');
+        const lessonTitle = document.getElementById('lessonTitle');
+        const lessonContent = document.getElementById('lessonContent');
+        const moduleList = document.getElementById('moduleList');
+        const backToCourses = document.getElementById('backToCourses');
+        const prevLessonBtn = document.getElementById('prevLessonBtn');
+        const nextLessonBtn = document.getElementById('nextLessonBtn');
+        const codeExerciseContainer = document.getElementById('codeExerciseContainer');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercent = document.getElementById('progressPercent');
+
+        // Текущий выбранный курс для заявки
+        let selectedCourse = null;
+        let currentCourse = null;
+        let currentLessonIndex = 0;
+        let completedLessons = new Set();
+        let userCode = '';
+
+        // Инициализация прогресса из localStorage
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('courseProgress');
+            if (savedProgress) {
+                completedLessons = new Set(JSON.parse(savedProgress));
+            }
+        }
+
+        // Сохранение прогресса в localStorage
+        function saveProgress() {
+            localStorage.setItem('courseProgress', JSON.stringify([...completedLessons]));
+        }
+
+        // Проверка, можно ли перейти к следующему уроку
+        function canGoToNextLesson() {
+            if (!currentCourse || !currentCourse.content || !currentCourse.content.lessons) {
+                return false;
+            }
+            
+            const lessonKey = `${currentCourse.id}-${currentLessonIndex}`;
+            const isCompleted = completedLessons.has(lessonKey);
+            
+            // Если в уроке есть упражнение, проверяем выполнение
+            const currentLesson = currentCourse.content.lessons[currentLessonIndex];
+            if (currentLesson && currentLesson.exercise) {
+                return isCompleted;
+            }
+            
+            // Если упражнения нет, можно переходить
+            return true;
+        }
+
+        // Функция для отображения курсов
+        function renderCourses(coursesArray, container) {
+            container.innerHTML = '';
+            
+            coursesArray.forEach(course => {
+                const courseCard = document.createElement('div');
+                courseCard.className = `course-card ${course.matched ? 'matched' : ''}`;
+                courseCard.dataset.category = course.category;
+                
+                const keywordsHTML = course.keywords.map(keyword => 
+                    `<span class="keyword">${keyword}</span>`
+                ).join('');
+                
+                courseCard.innerHTML = `
+                    <div class="course-header">
+                        <span class="course-category">${getCategoryName(course.category)}</span>
+                        <span class="course-level">${course.level}</span>
+                    </div>
+                    <div class="course-body">
+                        <h3>${course.title}</h3>
+                        <p>${course.description}</p>
+                        <div class="course-keywords">
+                            ${keywordsHTML}
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div class="course-price">${course.price}</div>
+                        <button class="course-btn apply-btn" data-id="${course.id}">Начать обучение бесплатно</button>
+                    </div>
+                `;
+                
+                container.appendChild(courseCard);
+                
+                setTimeout(() => {
+                    courseCard.classList.add('visible');
+                }, 100);
+            });
+            
+            document.querySelectorAll('.apply-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const courseId = parseInt(this.dataset.id);
+                    selectedCourse = courses.find(course => course.id === courseId);
+                    openApplicationModal();
+                });
+            });
+        }
+
+        function getCategoryName(category) {
+            const categoryNames = {
+                'web': 'Веб-разработка',
+                'data': 'Анализ данных',
+                'mobile': 'Мобильная разработка',
+                'design': 'Дизайн',
+                'qa': 'Тестирование'
+            };
+            return categoryNames[category] || category;
+        }
+
+        // Инициализация - отображаем все курсы
+        renderCourses(courses, coursesGrid);
+        loadProgress();
+
+        // Фильтрация курсов по категории
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                
+                document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });
+                
+                if (filter === 'all') {
+                    renderCourses(courses, coursesGrid);
+                } else {
+                    const filteredCourses = courses.filter(course => course.category === filter);
+                    renderCourses(filteredCourses, coursesGrid);
+                }
+            });
+        });
+
+        // Функция поиска курсов по ключевым словам
+        function searchCourses(query) {
+            courses.forEach(course => course.matched = false);
+            
+            const queryWords = query.toLowerCase().split(' ').filter(word => word.length > 2);
+            
+            const matchedKeywordsSet = new Set();
+            const matchedCourses = [];
+            
+            courses.forEach(course => {
+                let matchCount = 0;
+                
+                queryWords.forEach(word => {
+                    if (course.keywords.some(keyword => keyword.toLowerCase().includes(word))) {
+                        matchCount++;
+                        matchedKeywordsSet.add(word);
+                    }
+                });
+                
+                if (matchCount > 0) {
+                    course.matched = true;
+                    course.matchCount = matchCount;
+                    matchedCourses.push(course);
+                }
+            });
+            
+            matchedCourses.sort((a, b) => b.matchCount - a.matchCount);
+            
+            return {
+                courses: matchedCourses,
+                keywords: Array.from(matchedKeywordsSet)
+            };
+        }
+
+        // Обработчик поиска
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const query = searchInput.value.trim();
+            
+            if (query.length < 3) {
+                alert('Введите минимум 3 символа для поиска');
+                return;
+            }
+            
+            const searchResults = searchCourses(query);
+            
+            resultsSection.classList.add('active');
+            
+            resultsCount.textContent = `Найдено ${searchResults.courses.length} курсов по вашему запросу`;
+            
+            matchedKeywords.innerHTML = '';
+            searchResults.keywords.forEach(keyword => {
+                const keywordElement = document.createElement('div');
+                keywordElement.className = 'matched-keyword';
+                keywordElement.textContent = keyword;
+                matchedKeywords.appendChild(keywordElement);
+            });
+            
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            
+            renderCourses(searchResults.courses, resultsGrid);
+        }
+
+        // Обработчики для тегов
+        tags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                const tagText = this.dataset.tag;
+                searchInput.value = tagText;
+                performSearch();
+            });
+        });
+
+        // Функция открытия модального окна заявки
+        function openApplicationModal() {
+            if (!selectedCourse) return;
+            
+            selectedCourseTitle.textContent = selectedCourse.title;
+            selectedCourseDescription.textContent = selectedCourse.description;
+            applicationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Функция закрытия модального окна
+        function closeApplicationModal() {
+            applicationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Обработчики модального окна
+        closeModal.addEventListener('click', closeApplicationModal);
+        applicationModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeApplicationModal();
+            }
+        });
+
+        // Функция отображения курса пользователю
+        function showCourseContent(course) {
+            currentCourse = course;
+            currentLessonIndex = 0;
+            
+            // Заполняем информацию о курсе
+            courseContentTitle.textContent = course.title;
+            courseDuration.textContent = course.duration;
+            courseLevel.textContent = course.level;
+            courseModules.textContent = course.modules ? `${course.modules} модулей` : '10 модулей';
+            
+            // Показываем секцию с курсом и скрываем другие
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            courseContentSection.classList.add('active');
+            
+            // Прокручиваем к началу курса
+            courseContentSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Скрываем хедер курсов если он активен
+            resultsSection.classList.remove('active');
+            
+            // Загружаем первый урок
+            loadLesson(currentLessonIndex);
+            
+            // Обновляем прогресс
+            updateProgress();
+        }
+
+        // Функция загрузки урока
+        function loadLesson(lessonIndex) {
+            if (!currentCourse || !currentCourse.content || !currentCourse.content.lessons) {
+                showCourseCompletion();
+                return;
+            }
+            
+            // Проверяем, что урок существует
+            if (lessonIndex >= currentCourse.content.lessons.length) {
+                // Проверяем, все ли уроки выполнены
+                const allLessonsCompleted = checkAllLessonsCompleted();
+                if (allLessonsCompleted) {
+                    showCourseCompletion();
+                } else {
+                    // Ищем следующий невыполненный урок
+                    const nextUncompletedIndex = findNextUncompletedLesson(lessonIndex);
+                    if (nextUncompletedIndex !== -1) {
+                        loadLesson(nextUncompletedIndex);
+                    } else {
+                        showCourseCompletion();
+                    }
+                }
+                return;
+            }
+            
+            const lesson = currentCourse.content.lessons[lessonIndex];
+            currentLessonIndex = lessonIndex;
+            
+            // Обновляем заголовок и содержание урока
+            lessonTitle.textContent = lesson.title;
+            lessonContent.innerHTML = lesson.content;
+            
+            // Обновляем кнопки навигации
+            updateNavigationButtons();
+            
+            // Создаем редактор кода если есть упражнение
+            codeExerciseContainer.innerHTML = '';
+            if (lesson.exercise) {
+                createCodeEditor(lesson.exercise);
+            } else {
+                codeExerciseContainer.innerHTML = '';
+            }
+            
+            // Обновляем список модулей
+            updateModuleList();
+            
+            // Обновляем прогресс
+            updateProgress();
+        }
+
+        // Показать завершение курса
+        function showCourseCompletion() {
+            const totalLessons = currentCourse.content.lessons.length;
+            const completedCount = Array.from(completedLessons).filter(key => 
+                key.startsWith(`${currentCourse.id}-`)
+            ).length;
+            
+            lessonTitle.textContent = "Курс завершен! 🎉";
+            lessonContent.innerHTML = `
+                <div class="completion-message">
+                    <h3>Поздравляем с завершением курса!</h3>
+                    <p>Вы успешно завершили ${completedCount} из ${totalLessons} уроков в курсе "${currentCourse.title}".</p>
+                    
+                    ${completedCount === totalLessons ? 
+                        `<p><strong>Вы выполнили все уроки курса!</strong> Это отличное достижение.</p>` : 
+                        `<p><strong>Вы завершили ${Math.round((completedCount/totalLessons)*100)}% курса.</strong> Продолжайте в том же духе!</p>`
+                    }
+                    
+                    <p>Рекомендуем для закрепления материала:</p>
+                    <ul>
+                        <li>Повторить сложные моменты</li>
+                        <li>Выполнить дополнительные практические задания</li>
+                        <li>Создать собственный проект на основе изученного</li>
+                        <li>Изучить связанные темы из других курсов</li>
+                    </ul>
+                </div>
+            `;
+            
+            codeExerciseContainer.innerHTML = '';
+            prevLessonBtn.style.display = 'block';
+            nextLessonBtn.style.display = 'none';
+            
+            // Обновляем прогресс
+            updateProgress();
+        }
+
+        // Обновление кнопок навигации
+        function updateNavigationButtons() {
+            const totalLessons = currentCourse.content.lessons.length;
+            
+            // Кнопка "Предыдущий урок"
+            prevLessonBtn.disabled = currentLessonIndex === 0;
+            
+            // Кнопка "Следующий урок"
+            const canGoNext = canGoToNextLesson();
+            const isLastLesson = currentLessonIndex === totalLessons - 1;
+            
+            if (isLastLesson) {
+                if (canGoNext) {
+                    nextLessonBtn.innerHTML = 'Завершить курс <i class="fas fa-flag-checkered"></i>';
+                    nextLessonBtn.disabled = false;
+                    nextLessonBtn.classList.remove('locked');
+                } else {
+                    nextLessonBtn.innerHTML = 'Сначала выполните задание <i class="fas fa-lock"></i>';
+                    nextLessonBtn.disabled = true;
+                    nextLessonBtn.classList.add('locked');
+                }
+            } else {
+                if (canGoNext) {
+                    nextLessonBtn.innerHTML = 'Следующий урок <i class="fas fa-arrow-right"></i>';
+                    nextLessonBtn.disabled = false;
+                    nextLessonBtn.classList.remove('locked');
+                } else {
+                    nextLessonBtn.innerHTML = 'Сначала выполните задание <i class="fas fa-lock"></i>';
+                    nextLessonBtn.disabled = true;
+                    nextLessonBtn.classList.add('locked');
+                }
+            }
+        }
+
+        // Проверка, все ли уроки выполнены
+        function checkAllLessonsCompleted() {
+            if (!currentCourse || !currentCourse.content || !currentCourse.content.lessons) {
+                return false;
+            }
+            
+            const totalLessons = currentCourse.content.lessons.length;
+            const completedCount = Array.from(completedLessons).filter(key => 
+                key.startsWith(`${currentCourse.id}-`)
+            ).length;
+            
+            return completedCount === totalLessons;
+        }
+
+        // Найти следующий невыполненный урок
+        function findNextUncompletedLesson(startIndex) {
+            if (!currentCourse || !currentCourse.content || !currentCourse.content.lessons) {
+                return -1;
+            }
+            
+            for (let i = startIndex; i < currentCourse.content.lessons.length; i++) {
+                const lessonKey = `${currentCourse.id}-${i}`;
+                if (!completedLessons.has(lessonKey)) {
+                    return i;
+                }
+            }
+            
+            return -1;
+        }
+
+        // Создание редактора кода для упражнения
+        function createCodeEditor(exercise) {
+            const editorHTML = `
+                <div class="exercise">
+                    <h4>Практическое задание</h4>
+                    <p>${exercise.description}</p>
+                    
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <span>Редактор кода</span>
+                            <span>${getLanguageName(currentCourse.id)}</span>
+                        </div>
+                        <div class="editor-content">
+                            <textarea class="editor-textarea" id="codeInput" placeholder="Введите ваш код здесь...">${exercise.initialCode || ''}</textarea>
+                        </div>
+                        <div class="editor-footer">
+                            <button class="reset-btn" id="resetCode">Сбросить код</button>
+                            <button class="run-btn" id="runCode">Запустить код</button>
+                        </div>
+                    </div>
+                    
+                    <div class="output" id="codeOutput">Здесь будет результат выполнения вашего кода...</div>
+                </div>
+            `;
+            
+            codeExerciseContainer.innerHTML = editorHTML;
+            
+            // Добавляем обработчики событий
+            document.getElementById('runCode').addEventListener('click', () => runCode(exercise.tests));
+            document.getElementById('resetCode').addEventListener('click', () => {
+                document.getElementById('codeInput').value = exercise.initialCode || '';
+            });
+            
+            // Сохраняем код при изменении
+            document.getElementById('codeInput').addEventListener('input', function() {
+                userCode = this.value;
+            });
+        }
+
+        // Определение языка по ID курса
+        function getLanguageName(courseId) {
+            switch(courseId) {
+                case 1: return 'JavaScript';
+                case 2: return 'Python';
+                case 3: return 'Kotlin';
+                default: return 'JavaScript';
+            }
+        }
+
+        // Запуск и проверка кода
+        function runCode(tests) {
+            const codeInput = document.getElementById('codeInput');
+            const output = document.getElementById('codeOutput');
+            
+            if (!codeInput || !output) return;
+            
+            const userCode = codeInput.value;
+            output.innerHTML = 'Выполнение кода...';
+            output.className = 'output';
+            
+            try {
+                // Для безопасности выполняем код в ограниченном контексте
+                let testResults = [];
+                let allTestsPassed = true;
+                
+                // Выполняем код пользователя
+                eval(userCode);
+                
+                // Запускаем тесты
+                for (let i = 0; i < tests.length; i++) {
+                    const test = tests[i];
+                    try {
+                        const result = eval(test.input);
+                        const passed = JSON.stringify(result) === JSON.stringify(test.expected);
+                        
+                        testResults.push({
+                            test: test.input,
+                            expected: test.expected,
+                            actual: result,
+                            passed: passed
+                        });
+                        
+                        if (!passed) {
+                            allTestsPassed = false;
+                        }
+                    } catch (error) {
+                        testResults.push({
+                            test: test.input,
+                            expected: test.expected,
+                            actual: `Ошибка: ${error.message}`,
+                            passed: false
+                        });
+                        allTestsPassed = false;
+                    }
+                }
+                
+                // Форматируем вывод
+                let outputHTML = '';
+                if (allTestsPassed) {
+                    outputHTML = '<strong style="color: #4ade80;">✅ Все тесты пройдены успешно!</strong><br><br>';
+                    output.className = 'output success';
+                    
+                    // Отмечаем урок как выполненный
+                    const lessonKey = `${currentCourse.id}-${currentLessonIndex}`;
+                    if (!completedLessons.has(lessonKey)) {
+                        completedLessons.add(lessonKey);
+                        saveProgress();
+                        updateProgress();
+                        updateNavigationButtons();
+                        
+                        // Показываем поздравление
+                        setTimeout(() => {
+                            alert('🎉 Отлично! Вы успешно выполнили задание! Теперь можно переходить к следующему уроку.');
+                        }, 500);
+                    }
+                } else {
+                    outputHTML = '<strong style="color: #ef4444;">❌ Не все тесты пройдены:</strong><br><br>';
+                    output.className = 'output error';
+                }
+                
+                // Добавляем детали тестов
+                testResults.forEach((test, index) => {
+                    outputHTML += `
+                        <div style="margin-bottom: 10px; padding: 8px; background: ${test.passed ? '#d1fae5' : '#fee2e2'}; border-radius: 4px;">
+                            <strong>Тест ${index + 1}: ${test.test}</strong><br>
+                            Ожидалось: ${JSON.stringify(test.expected)}<br>
+                            Получено: ${JSON.stringify(test.actual)}<br>
+                            ${test.passed ? '✅ Пройден' : '❌ Не пройден'}
+                        </div>
+                    `;
+                });
+                
+                // Добавляем подсказку если тесты не пройдены
+                if (!allTestsPassed) {
+                    outputHTML += `
+                        <div style="margin-top: 15px; padding: 10px; background: #fef3c7; border-radius: 4px;">
+                            <strong>💡 Подсказка:</strong> Проверьте синтаксис и логику вашего кода. Убедитесь, что функция возвращает правильные значения для всех тестовых случаев.
+                        </div>
+                    `;
+                }
+                
+                output.innerHTML = outputHTML;
+                
+            } catch (error) {
+                output.innerHTML = `<strong style="color: #ef4444;">❌ Ошибка выполнения:</strong><br><br>${error.message}`;
+                output.className = 'output error';
+            }
+        }
+
+        // Обновление списка модулей
+        function updateModuleList() {
+            if (!currentCourse || !currentCourse.content) return;
+            
+            moduleList.innerHTML = '';
+            const lessons = currentCourse.content.lessons || [];
+            const modules = currentCourse.content.modules || [];
+            
+            // Создаем элементы модулей на основе уроков или модулей
+            const totalItems = Math.max(lessons.length, modules.length);
+            
+            for (let i = 0; i < totalItems; i++) {
+                const moduleItem = document.createElement('li');
+                const lessonKey = `${currentCourse.id}-${i}`;
+                const isCompleted = completedLessons.has(lessonKey);
+                const isActive = i === currentLessonIndex;
+                
+                moduleItem.className = 'module-item';
+                if (isActive) moduleItem.classList.add('active');
+                if (isCompleted) moduleItem.classList.add('completed');
+                
+                let title = '';
+                if (i < lessons.length) {
+                    title = lessons[i].title.replace('Урок ' + (i + 1) + ': ', '');
+                } else if (i < modules.length) {
+                    title = modules[i];
+                } else {
+                    title = `Модуль ${i + 1}`;
+                }
+                
+                moduleItem.innerHTML = `
+                    <span class="module-number">${i + 1}</span>
+                    ${title}
+                `;
+                
+                moduleItem.addEventListener('click', () => {
+                    if (i < lessons.length) {
+                        loadLesson(i);
+                    }
+                });
+                
+                moduleList.appendChild(moduleItem);
+            }
+        }
+
+        // Обновление прогресса
+        function updateProgress() {
+            if (!currentCourse || !currentCourse.content || !currentCourse.content.lessons) return;
+            
+            const totalLessons = currentCourse.content.lessons.length;
+            const completedCount = Array.from(completedLessons).filter(key => 
+                key.startsWith(`${currentCourse.id}-`)
+            ).length;
+            
+            const progress = totalLessons > 0 ? (completedCount / totalLessons) * 100 : 0;
+            
+            progressFill.style.width = `${progress}%`;
+            progressPercent.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Обработчик формы заявки
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                course: selectedCourse.title,
+                name: document.getElementById('applicantName').value,
+                surname: document.getElementById('applicantSurname').value,
+                email: document.getElementById('applicantEmail').value,
+                experience: document.getElementById('applicantExperience').value,
+                message: document.getElementById('applicantMessage').value
+            };
+            
+            // Сохраняем данные о регистрации
+            console.log('Регистрация на курс:', formData);
+            
+            // Закрываем модалку
+            closeApplicationModal();
+            
+            // Сбрасываем форму
+            this.reset();
+            
+            // ПОКАЗЫВАЕМ КУРС НЕМЕДЛЕННО!
+            showCourseContent(selectedCourse);
+            
+            // Показываем уведомление
+            setTimeout(() => {
+                alert(`✅ Отлично, ${formData.name}! Вы получили полный бесплатный доступ к курсу "${selectedCourse.title}". Приятного обучения!`);
+            }, 500);
+        });
+
+        // Кнопка "Предыдущий урок"
+        prevLessonBtn.addEventListener('click', function() {
+            if (currentLessonIndex > 0) {
+                loadLesson(currentLessonIndex - 1);
+            }
+        });
+
+        // Кнопка "Следующий урок"
+        nextLessonBtn.addEventListener('click', function() {
+            if (this.classList.contains('locked') || this.disabled) {
+                return;
+            }
+            
+            const totalLessons = currentCourse.content.lessons.length;
+            const isLastLesson = currentLessonIndex === totalLessons - 1;
+            
+            if (isLastLesson) {
+                // Завершение курса
+                showCourseCompletion();
+            } else {
+                // Переход к следующему уроку
+                loadLesson(currentLessonIndex + 1);
+            }
+        });
+
+        // Кнопка "Вернуться ко всем курсам"
+        backToCourses.addEventListener('click', function() {
+            courseContentSection.classList.remove('active');
+            document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Мобильное меню
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            menuToggle.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                if (this.dataset.filter) {
+                    e.preventDefault();
+                    const filter = this.dataset.filter;
+                    const filterBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+                    if (filterBtn) {
+                        filterBtn.click();
+                    }
+                    return;
+                }
+                
+                if (href === '#') return;
+                
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Анимация элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.course-card').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Добавляем демо-доступ для быстрого тестирования
+        setTimeout(() => {
+            console.log("💡 Подсказка: Нажмите 'Начать обучение бесплатно' на любом курсе, чтобы сразу получить доступ к материалам!");
+            console.log("🎓 Все курсы полностью бесплатны!");
+            console.log("🔒 Теперь нельзя перейти к следующему уроку, пока не выполнен код в текущем!");
+        }, 3000);
+    </script>
+</body>
+</html>
